@@ -11,7 +11,9 @@ use Filament\Resources\Resource;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Forms\Components\TextInput;
 use App\Filament\Exports\ProductExporter;
+use App\Filament\Imports\ProductImporter;
 use Filament\Tables\Actions\ExportAction;
+use Filament\Tables\Actions\ImportAction;
 use Illuminate\Database\Eloquent\Builder;
 use App\Filament\Resources\ProductResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
@@ -52,6 +54,10 @@ class ProductResource extends Resource
                 ]),
             ])
             ->headerActions([
+                ImportAction::make()
+                    ->importer(ProductImporter::class),
+
+
                 ExportAction::make()
                     ->exporter(ProductExporter::class),
             ]);
