@@ -14,11 +14,6 @@ class ListProducts extends ListRecords
 {
     protected static string $resource = ProductResource::class;
 
-    protected function testProp()
-    {
-        return 0;
-    }
-
     protected function getHeaderActions(): array
     {
         return [
