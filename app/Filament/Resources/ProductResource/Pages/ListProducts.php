@@ -17,7 +17,7 @@ class ListProducts extends ListRecords
     protected function getHeaderActions(): array
     {
         return [
-            Actions\Action::make('inviteStaffUser')
+            Actions\Action::make('modalTest')
                 ->modalHidden(function () {
                     Notification::make()
                         ->title('Modal hidden')
