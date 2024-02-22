@@ -8,6 +8,7 @@ use App\Models\Product;
 use Filament\Forms\Form;
 use Filament\Tables\Table;
 use Filament\Resources\Resource;
+use Filament\Forms\Components\Select;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Forms\Components\TextInput;
 use App\Filament\Exports\ProductExporter;
@@ -30,6 +31,13 @@ class ProductResource extends Resource
         return $form
             ->schema([
                 TextInput::make('name')
+                    ->required(),
+                Select::make('type')
+                    ->options([
+                        'physical' => 'Physical',
+                        'digital' => 'Digital',
+                    ])
+                    ->native(false)
                     ->required(),
             ]);
     }
