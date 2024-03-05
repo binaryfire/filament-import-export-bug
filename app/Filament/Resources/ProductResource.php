@@ -16,6 +16,7 @@ use App\Filament\Imports\ProductImporter;
 use Filament\Tables\Actions\ExportAction;
 use Filament\Tables\Actions\ImportAction;
 use Illuminate\Database\Eloquent\Builder;
+use Intervention\Validation\Rules\Domainname;
 use App\Filament\Resources\ProductResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Resources\ProductResource\RelationManagers;
@@ -32,6 +33,11 @@ class ProductResource extends Resource
             ->schema([
                 TextInput::make('name')
                     ->required(),
+
+                TextInput::make('website')
+                    ->rules([new Domainname()])
+                    ->required(),                    
+
                 Select::make('type')
                     ->options([
                         'physical' => 'Physical',
