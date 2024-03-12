@@ -20,6 +20,7 @@ class ListProducts extends ListRecords
             Actions\CreateAction::make(),
             
             Actions\Action::make('modalTest')
+                ->modal()
                 ->modalHidden(function () {
                     Notification::make()
                         ->title('Modal hidden')
