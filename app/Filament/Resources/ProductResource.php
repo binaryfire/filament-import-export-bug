@@ -9,13 +9,16 @@ use Filament\Forms\Form;
 use Filament\Tables\Table;
 use Filament\Resources\Resource;
 use Filament\Forms\Components\Select;
+use Filament\Forms\Components\Actions;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Forms\Components\TextInput;
+use Filament\Notifications\Notification;
 use App\Filament\Exports\ProductExporter;
 use App\Filament\Imports\ProductImporter;
 use Filament\Tables\Actions\ExportAction;
 use Filament\Tables\Actions\ImportAction;
 use Illuminate\Database\Eloquent\Builder;
+use Filament\Forms\Components\Actions\Action;
 use Intervention\Validation\Rules\Domainname;
 use App\Filament\Resources\ProductResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
@@ -45,6 +48,28 @@ class ProductResource extends Resource
                     ])
                     ->native(false)
                     ->required(),
+
+                Actions::make([
+                    Action::make('extraModalFooterActionsTest')
+                        ->action(function () {
+                            //
+                        })
+                        ->modal()
+                        ->modalHeading('Test')
+                        ->modalSubmitActionLabel('Submit')
+                        ->extraModalFooterActions([
+                            \Filament\Actions\Action::make('extraAction')
+                                ->requiresConfirmation()
+                                ->action(function () {
+                                    Notification::make()
+                                        ->title('Extra action fired')
+                                        ->info()
+                                        ->send();
+
+                                    dd('test');
+                                }),
+                        ])
+                    ])
             ]);
     }
 
