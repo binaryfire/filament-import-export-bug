@@ -35,6 +35,10 @@ class ProductResource extends Resource
         return $form
             ->schema([
                 TextInput::make('name')
+                    ->required()
+                    ->same('confirm-name'),
+
+                TextInput::make('confirm-name')
                     ->required(),
 
                 TextInput::make('website')
@@ -47,6 +51,17 @@ class ProductResource extends Resource
                         'digital' => 'Digital',
                     ])
                     ->native(false)
+                    ->required(),
+
+                Select::make('multi_select_test')
+                    ->options([
+                        'option_1' => 'Option 1',
+                        'option_2' => 'Option 2',
+                        'option_3' => 'Option 3',
+                        'option_4' => 'Option 4',
+                    ])
+                    ->native(false)
+                    ->multiple()
                     ->required(),
 
                 Actions::make([
